@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    ports:
+      - 8080:8080
+    env_file:
+      - .env
+  database:
+    image: postgres:12-alpine
+    volumes:
+      - ${HOME}/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    env_file:
+      - bd/.env

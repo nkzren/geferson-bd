@@ -13,6 +13,6 @@ public class TestDump extends PanacheEntity {
     public String test;
 
     public static TestDump testResource() {
-        return find("test", "TAPIOCA").firstResult();
+        return findAll().firstResult();
     }
 }

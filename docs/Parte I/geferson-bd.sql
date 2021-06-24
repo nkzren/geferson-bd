@@ -44,12 +44,14 @@ id integer NOT NULL,
 nickname text,
 email text,
 data_nascimento date,
+deletado bool,
 PRIMARY KEY(id));
 
 /* Table 'watchlist' */
 CREATE TABLE watchlist (
 usuario_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+publico bool);
 
 /* Table 'avaliacao' */
 CREATE TABLE avaliacao (
@@ -129,6 +131,11 @@ temporadas integer);
 CREATE TABLE filmes (
 obra_id integer NOT NULL,
 duracao integer);
+
+/* Table 'is_blocked' */
+CREATE TABLE is_blocked (
+usuario_id integer NOT NULL,
+data_de_bloqueio text);
 
 /* Relation 'sites-disponibilidade_sites' */
 ALTER TABLE disponibilidade_sites ADD CONSTRAINT "sites-disponibilidade_sites"
@@ -235,3 +242,7 @@ ALTER TABLE series ADD CONSTRAINT "obra-series"
 FOREIGN KEY (obra_id)
 REFERENCES obra(id);
 
+/* Relation 'usuario-is_blocked' */
+ALTER TABLE is_blocked ADD CONSTRAINT "usuario-is_blocked"
+FOREIGN KEY (usuario_id)
+REFERENCES usuario(id);

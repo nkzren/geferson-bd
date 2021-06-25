@@ -18,9 +18,6 @@ EXECUTE PROCEDURE obra_nota_media()
 -- SQL Padrao
 CREATE TRIGGER obra_nota_media AFTER INSERT ON avaliacao
 AS
-DECLARE
-  contador NUMERIC;
-  divisor NUMERIC;
 BEGIN
   UPDATE obra
   SET nota_media = (

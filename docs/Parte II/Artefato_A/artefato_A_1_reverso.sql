@@ -17,9 +17,6 @@ EXECUTE PROCEDURE update_aval_reverso();
 -- SQL Padrao
 CREATE TRIGGER obra_nota_media AFTER DELETE ON avaliacao
 AS
-DECLARE
-  contador NUMERIC;
-  divisor NUMERIC;
 BEGIN
   UPDATE obra
   SET nota_media = (

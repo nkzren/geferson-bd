@@ -13,4 +13,14 @@ CREATE TRIGGER trigger_deletar_avaliacoes_usuario
   FOR EACH ROW
   WHEN (NEW.deletado = TRUE)
   EXECUTE PROCEDURE deletar_avaliacoes_usuario()
-deletar_avaliacoes_usuario()
+
+
+-- SQL Padrao
+CREATE TRIGGER trigger_deletar_avaliacoes_usuario
+  AFTER UPDATE ON usuario
+  FOR EACH ROW
+  WHEN (NEW.deletado = TRUE)
+  BEGIN
+    DELETE FROM avaliacao a
+    WHERE a.usuario_id = NEW.id;
+  END;

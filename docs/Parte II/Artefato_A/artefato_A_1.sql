@@ -1,25 +1,47 @@
-CREATE FUNCTION deletar_avaliacoes_usuario() 
-   RETURNS TRIGGER 
-   LANGUAGE PLPGSQL
+CREATE FUNCTION obra_nota_media()
+  RETURNS TRIGGER
+  LANGUAGE PLPGSQL
 AS $$
 BEGIN
-	DELETE FROM avaliacao a
-	WHERE a.usuario_id = NEW.id;
+  SELECT CAST(SUM(nota) AS NUMERIC)
+  INTO contador
+  IN avaliacao
+  WHERE new.obra_id = avaliacao.obra_id;
+
+  SELECT CAST(COUNT(nota) AS NUMERIC)
+  INTO divisor
+  IN avaliacao
+  WHERE new.obra_id = avaliacao.obra_id;
+
+  UPDATE obra
+  SET nota_media = contador/divisor
+  WHERE obra.id = new.obra_id;
 END;
-$$
 
-CREATE TRIGGER trigger_deletar_avaliacoes_usuario
-    AFTER UPDATE ON usuario
-    FOR EACH ROW
-    WHEN (NEW.deletado = TRUE)
-    EXECUTE PROCEDURE deletar_avaliacoes_usuario();
+CREATE TRIGGER trigger_obra_nota_media
+  AFTER INSERT, DELETE ON avaliacao
+  FOR EACH ROW
+  EXECUTE PROCEDURE obra_nota_media()
 
--- SQL Padrão
-CREATE TRIGGER trigger_deletar_avaliacoes_usuario
-    AFTER UPDATE ON usuario
-    FOR EACH ROW
-    WHEN (NEW.deletado = TRUE)
-    BEGIN
-        DELETE FROM avaliacao a
-        WHERE a.usuario_id = NEW.id;
-    END;
+
+-- SQL Padrao
+CREATE TRIGGER obra_nota_media AFTER INSERT, DELETE ON avaliacao
+AS
+DECLARE
+  contador NUMERIC;
+  divisor NUMERIC;
+BEGIN
+  SELECT CAST(SUM(nota) AS NUMERIC)
+  INTO contador
+  IN avaliacao
+  WHERE new.obra_id = avaliacao.obra_id;
+
+  SELECT CAST(COUNT(nota) AS NUMERIC)
+  INTO divisor
+  IN avaliacao
+  WHERE new.obra_id = avaliacao.obra_id;
+
+  UPDATE obra
+  SET nota_media = contador/divisor
+  WHERE obra.id = new.obra_id;
+END;

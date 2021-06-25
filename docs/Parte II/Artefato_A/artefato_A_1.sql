@@ -1,47 +1,31 @@
-CREATE FUNCTION obra_nota_media()
-  RETURNS TRIGGER
-  LANGUAGE PLPGSQL
-AS $$
+CREATE FUNCTION obra_nota_media() RETURNS TRIGGER AS $$
 BEGIN
-  SELECT CAST(SUM(nota) AS NUMERIC)
-  INTO contador
-  IN avaliacao
-  WHERE new.obra_id = avaliacao.obra_id;
-
-  SELECT CAST(COUNT(nota) AS NUMERIC)
-  INTO divisor
-  IN avaliacao
-  WHERE new.obra_id = avaliacao.obra_id;
-
   UPDATE obra
-  SET nota_media = contador/divisor
+  SET nota_media = (
+    SELECT COALESCE(avg(nota), 0) 
+    FROM avaliacao a WHERE obra_id = 1
+  ) 
   WHERE obra.id = new.obra_id;
-END;
+  RETURN NULL;
+END $$ LANGUAGE PLPGSQL;
 
 CREATE TRIGGER trigger_obra_nota_media
-  AFTER INSERT, DELETE ON avaliacao
-  FOR EACH ROW
-  EXECUTE PROCEDURE obra_nota_media()
+AFTER INSERT ON avaliacao
+FOR EACH ROW
+EXECUTE PROCEDURE obra_nota_media()
 
 
 -- SQL Padrao
-CREATE TRIGGER obra_nota_media AFTER INSERT, DELETE ON avaliacao
+CREATE TRIGGER obra_nota_media AFTER INSERT ON avaliacao
 AS
 DECLARE
   contador NUMERIC;
   divisor NUMERIC;
 BEGIN
-  SELECT CAST(SUM(nota) AS NUMERIC)
-  INTO contador
-  IN avaliacao
-  WHERE new.obra_id = avaliacao.obra_id;
-
-  SELECT CAST(COUNT(nota) AS NUMERIC)
-  INTO divisor
-  IN avaliacao
-  WHERE new.obra_id = avaliacao.obra_id;
-
   UPDATE obra
-  SET nota_media = contador/divisor
+  SET nota_media = (
+    SELECT COALESCE(avg(nota), 0) 
+    FROM avaliacao a WHERE obra_id = 1
+  ) 
   WHERE obra.id = new.obra_id;
 END;

@@ -1,0 +1,6 @@
+CREATE VIEW watchlist_publica AS
+SELECT u.nickname, o.nome AS nome_obra, o.nota_media FROM usuario u 
+INNER JOIN watchlist w ON u.id = w.usuario_id
+INNER JOIN obra o ON w.obra_id = o.id
+WHERE w.publico IS TRUE;
+

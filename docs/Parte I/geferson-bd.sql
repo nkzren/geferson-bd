@@ -1,6 +1,6 @@
 /* Table 'obra' */
 CREATE TABLE obra (
-id integer NOT NULL,
+id SERIAL,
 estudio_id integer NOT NULL,
 diretores_id integer NOT NULL,
 pais_id integer NOT NULL,
@@ -11,7 +11,7 @@ PRIMARY KEY(id));
 
 /* Table 'genero' */
 CREATE TABLE genero (
-id integer NOT NULL,
+id SERIAL,
 tipo_de_genero text,
 PRIMARY KEY(id));
 
@@ -22,29 +22,29 @@ obra_id integer NOT NULL);
 
 /* Table 'plataforma' */
 CREATE TABLE plataforma (
-id integer NOT NULL,
+id SERIAL,
 nome_site text,
 PRIMARY KEY(id));
 
 /* Table 'diretores' */
 CREATE TABLE diretores (
-id integer NOT NULL,
+id SERIAL,
 nome_diretor text,
 PRIMARY KEY(id));
 
 /* Table 'estudio' */
 CREATE TABLE estudio (
-id integer NOT NULL,
+id SERIAL,
 nome_estudio text,
 PRIMARY KEY(id));
 
 /* Table 'usuario' */
 CREATE TABLE usuario (
-id integer NOT NULL,
+id SERIAL,
 nickname text,
 email text,
 data_nascimento date,
-deletado bool,
+deletado bool DEFAULT FALSE,
 PRIMARY KEY(id));
 
 /* Table 'watchlist' */
@@ -55,7 +55,7 @@ publico bool);
 
 /* Table 'avaliacao' */
 CREATE TABLE avaliacao (
-id integer NOT NULL,
+id SERIAL,
 usuario_id integer,
 obra_id integer NOT NULL,
 comentario text,
@@ -65,7 +65,7 @@ PRIMARY KEY(id));
 
 /* Table 'ator' */
 CREATE TABLE ator (
-id integer NOT NULL,
+id SERIAL,
 nome_ator text,
 PRIMARY KEY(id));
 
@@ -81,13 +81,13 @@ obra_id integer NOT NULL);
 
 /* Table 'pais' */
 CREATE TABLE pais (
-id integer NOT NULL,
+id SERIAL,
 nome_pais text,
 PRIMARY KEY(id));
 
 /* Table 'avaliadores' */
 CREATE TABLE avaliadores (
-id integer NOT NULL,
+id SERIAL,
 "tipoDeNota_id" integer NOT NULL,
 nome_site text,
 path text,
@@ -100,7 +100,7 @@ obra_id integer NOT NULL);
 
 /* Table 'categorias' */
 CREATE TABLE categorias (
-id integer NOT NULL,
+id SERIAL,
 categoria_nome text,
 descricao text,
 PRIMARY KEY(id));
@@ -113,7 +113,7 @@ obra_id integer NOT NULL);
 /* Table 'tipoDeNota' */
 CREATE TABLE "tipoDeNota" (
 "tipoDeNota" text NOT NULL,
-id integer NOT NULL,
+id SERIAL,
 PRIMARY KEY(id));
 
 /* Table 'genero_obra' */

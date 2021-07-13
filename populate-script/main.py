@@ -11,8 +11,9 @@ def insert_users(f, qtd):
         data_nascimento = random_date("1970/01/01", "2009/01/01", random.random())
 
         print(f"('{nickname}', '{nickname}@gmail.com', '{data_nascimento}'),")
-        f.write(f"('{nickname}', '{nickname}@gmail.com', '{data_nascimento}') %("," if i == qtd else ";" )\n")
+        f.write(f"('{nickname}', '{nickname}@gmail.com', '{data_nascimento}'){',' if i < qtd-1 else ';' }\n")
     
+
 
 
 f = open('populate-script/script.sql', 'a')

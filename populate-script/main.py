@@ -52,7 +52,7 @@ def insert_pais(f):
 
 
 def insert_categorias(f):
-    f.write("INSERT INTO categorias (nome_pais) VALUES\N")
+    f.write("INSERT INTO categorias (nome_pais) VALUES\n")
 
     categorias = [ 'Assistir com a família', 'Crianças grandes', 'em alta', 'Campeões de bilheteria', 'filmes policiais']
     qtd = len(categorias)

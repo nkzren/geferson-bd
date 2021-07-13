@@ -1,10 +1,6 @@
-INSERT INTO usuario VALUES ('emily.derks', 'emily.derks@gmail.com', '1974/04/02');
-INSERT INTO usuario VALUES ('damion.anderson', 'damion.anderson@gmail.com', '1981/01/23');
-INSERT INTO usuario VALUES ('rosemary.shatley', 'rosemary.shatley@gmail.com', '1990/02/02');
-INSERT INTO usuario VALUES ('harold.musick', 'harold.musick@gmail.com', '1981/07/13');
-INSERT INTO usuario VALUES ('gloria.jemison', 'gloria.jemison@gmail.com', '1990/11/08');
-INSERT INTO usuario VALUES ('scott.godoy', 'scott.godoy@gmail.com', '1992/12/22');
-INSERT INTO usuario VALUES ('emery.cliff', 'emery.cliff@gmail.com', '1990/06/11');
-INSERT INTO usuario VALUES ('jani.pentz', 'jani.pentz@gmail.com', '1983/09/10');
-INSERT INTO usuario VALUES ('anna.akers', 'anna.akers@gmail.com', '1996/12/29');
-INSERT INTO usuario VALUES ('sara.qualls', 'sara.qualls@gmail.com', '1995/08/03');
+INSERT INTO usuario (nickname, email, data_nascimento) VALUES
+('chris.herd', 'chris.herd@gmail.com', '1995/12/26'),
+('wilma.strunk', 'wilma.strunk@gmail.com', '1970/10/23'),
+('janice.moore', 'janice.moore@gmail.com', '1971/10/27'),
+('donald.minjares', 'donald.minjares@gmail.com', '1997/10/23'),
+('thomas.edwards', 'thomas.edwards@gmail.com', '1973/08/22');

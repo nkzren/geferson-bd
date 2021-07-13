@@ -1,5 +1,6 @@
 import random
 import time
+import string
 
 
 def str_time_prop(start, end, time_format, prop):
@@ -22,3 +23,6 @@ def str_time_prop(start, end, time_format, prop):
 def random_date(start, end, prop):
     return str_time_prop(start, end, '%Y/%m/%d', prop)
     
+def randomstring(length):
+    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
+

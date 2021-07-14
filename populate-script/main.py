@@ -134,10 +134,16 @@ def insert_watchlist(f, qtd_usuarios, qtd_obras):
 def insert_disponibilidade_sites(f, qtd_obras):
     f.write("INSERT INTO disponibilidade_sites (sites_id, obra_id)")
 
-    # as obras estarao disponiveis em 2 plataformas em media
-    num_iterations = qtd_obras * 2
+    entry_set = set()
+    # as obras estarao disponiveis em 3 plataformas em media
+    num_iterations = qtd_obras * 3
     for i in range(num_iterations):
-        f.write(f"('{random_number(1, qtd_obras)}', '{random_number(1, 2)}'){',' if i < num_iterations-1 else ';' }\n")
+        id_obra = random_number(1, qtd_obras)
+        id_plataforma = random_number(1, 2)
+        set_key = f'{id_obra}_{id_plataforma}'
+        if (set_key not in entry_set):
+            entry_set.add(set_key)
+            f.write(f"('{id_obra}', '{id_plataforma}'){',' if i < num_iterations-1 else ';' }\n")
 
 
 def main():

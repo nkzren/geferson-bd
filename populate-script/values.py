@@ -21,3 +21,5 @@ obras = {
     ]
 }
 diretores = []
+plataformas = ['Fletmix', 'Primo da Amazonia', 'Rolinho Crocante', 'DiversaoAnimacao', 'Disney Minus']
+atores = []

@@ -1,7 +1,7 @@
 import names
 import os
 from functions import random_date, random_number, randomstring, random_item, random_id, get_movies
-from values import generos, estudios, paises, obras, categorias, diretores
+from values import generos, estudios, paises, obras, categorias, diretores, plataformas, atores
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
 def insert_users(f, qtd):
@@ -18,6 +18,7 @@ def insert_ator(f, qtd):
 
     for i in range(qtd):
         nome = names.get_full_name()
+        atores.append(nome)
         f.write(f"('{nome}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
 
@@ -98,6 +99,14 @@ def insert_categorias(f):
     for i in range(qtd):
         f.write(f"('{categorias[i]}', '{randomstring(30)}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
+
+def insert_plataforma(f):
+    f.write("INSERT INTO plataforma (nome_site) VALUES\n")
+
+    qtd = len(plataformas)
+    for i in range(qtd):
+        f.write(f"('{plataformas[i]}'){',' if i < qtd-1 else ';' }\n")
+    f.write("\n")
     
 f = open(f'{current_dir}/test.sql', 'a')
 
@@ -111,6 +120,7 @@ insert_estudio(f)
 insert_genero(f)
 insert_pais(f)
 insert_diretor(f, 20)
+insert_plataforma(f)
 
 insert_obra(f, qtd_series, 'series')
 insert_obra(f, qtd_filmes, 'filmes')

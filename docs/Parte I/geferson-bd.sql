@@ -18,7 +18,8 @@ PRIMARY KEY(id));
 /* Table 'disponibilidade_sites' */
 CREATE TABLE disponibilidade_sites (
 sites_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+PRIMARY KEY (sites_id, obra_id));
 
 /* Table 'plataforma' */
 CREATE TABLE plataforma (
@@ -51,7 +52,8 @@ PRIMARY KEY(id));
 CREATE TABLE watchlist (
 usuario_id integer NOT NULL,
 obra_id integer NOT NULL,
-publico bool);
+publico bool,
+PRIMARY KEY (usuario_id, obra_id));
 
 /* Table 'avaliacao' */
 CREATE TABLE avaliacao (
@@ -72,7 +74,8 @@ PRIMARY KEY(id));
 /* Table 'esta_em' */
 CREATE TABLE esta_em (
 ator_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+PRIMARY KEY (ator_id, obra_id));
 
 /* Table 'posters' */
 CREATE TABLE posters (
@@ -96,7 +99,8 @@ PRIMARY KEY(id));
 /* Table 'avaliacao_exterior' */
 CREATE TABLE avaliacao_exterior (
 sites_avaliacao_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+PRIMARY KEY(sites_avaliacao_id, obra_id));
 
 /* Table 'categorias' */
 CREATE TABLE categorias (
@@ -108,7 +112,8 @@ PRIMARY KEY(id));
 /* Table 'categorias_obra' */
 CREATE TABLE categorias_obra (
 categorias_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+PRIMARY KEY (categorias_id, obra_id));
 
 /* Table 'tipoDeNota' */
 CREATE TABLE "tipoDeNota" (
@@ -119,7 +124,8 @@ PRIMARY KEY(id));
 /* Table 'genero_obra' */
 CREATE TABLE genero_obra (
 genero_id integer NOT NULL,
-obra_id integer NOT NULL);
+obra_id integer NOT NULL,
+PRIMARY KEY (genero_id, obra_id));
 
 /* Table 'series' */
 CREATE TABLE series (

@@ -52,7 +52,7 @@ PRIMARY KEY(id));
 CREATE TABLE watchlist (
 usuario_id integer NOT NULL,
 obra_id integer NOT NULL,
-publico bool,
+publico bool DEFAULT FALSE,
 PRIMARY KEY (usuario_id, obra_id));
 
 /* Table 'avaliacao' */

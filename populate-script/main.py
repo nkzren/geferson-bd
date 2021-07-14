@@ -123,20 +123,42 @@ def insert_avaliadores(f):
         f.write(f"('{avaliadores[i]}', '{tipo_nota[i]}', '{avaliadoresPath[i]}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
 
-f = open(f'{current_dir}/_ignoreTest.sql', 'a')
+def insert_watchlist(f, qtd_usuarios, qtd_obras): 
+    f.write("INSERT INTO watchlist (usuario_id, obra_id)")
 
-qtd_filmes = 100
-qtd_series = len(obras['series'])
-qtd_obras = qtd_filmes + qtd_series
-qtd_usuarios = 100
+    # Cria em media 5 itens na watchlist dos usuarios
+    num_iterations = qtd_usuarios * 5
+    for i in range(num_iterations):
+        f.write(f"('{random_number(1, qtd_usuarios)}', '{random_number(1, qtd_obras)}'){',' if i < num_iterations-1 else ';' }\n")
 
-insert_users(f, qtd_usuarios)
-insert_ator(f, 10)
-insert_estudio(f)
-insert_genero(f)
-insert_pais(f)
-insert_diretor(f, 20)
-insert_plataforma(f)
+def insert_disponibilidade_sites(f, qtd_obras):
+    f.write("INSERT INTO disponibilidade_sites (sites_id, obra_id)")
 
-insert_obra(f, qtd_series, 'series')
-insert_obra(f, qtd_filmes, 'filmes')
+    # as obras estarao disponiveis em 2 plataformas em media
+    num_iterations = qtd_obras * 2
+    for i in range(num_iterations):
+        f.write(f"('{random_number(1, qtd_obras)}', '{random_number(1, 2)}'){',' if i < num_iterations-1 else ';' }\n")
+
+
+def main():
+    f = open(f'{current_dir}/_ignoreTest.sql', 'a')
+    qtd_filmes = 100
+    qtd_series = len(obras['series'])
+    qtd_obras = qtd_filmes + qtd_series
+    qtd_usuarios = 100
+
+    insert_users(f, qtd_usuarios)
+    insert_ator(f, 10)
+    insert_estudio(f)
+    insert_genero(f)
+    insert_pais(f)
+    insert_diretor(f, 20)
+    insert_plataforma(f)
+
+    insert_obra(f, qtd_series, 'series')
+    insert_obra(f, qtd_filmes, 'filmes')
+
+    insert_disponibilidade_sites(f, qtd_obras)
+    insert_watchlist(f, qtd_usuarios, qtd_obras)
+
+main()

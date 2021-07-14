@@ -23,3 +23,6 @@ obras = {
 diretores = []
 plataformas = ['Fletmix', 'Primo da Amazonia', 'Rolinho Crocante', 'DiversaoAnimacao', 'Disney Minus']
 atores = []
+avaliadores = ['IMDB', 'Rotten Tomatoes']
+tipo_nota = ['1 a 10', '5 estrelas']
+avaliadoresPath = ['https://www.imdb.com/', 'https://www.rottentomatoes.com/']

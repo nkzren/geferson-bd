@@ -1,7 +1,7 @@
 import names
 import os
 from functions import random_date, random_number, randomstring, random_item, random_id, get_movies
-from values import generos, estudios, paises, obras, categorias, diretores, plataformas, atores
+from values import generos, estudios, paises, obras, categorias, diretores, plataformas, atores, avaliadores, tipo_nota, avaliadoresPath
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
 def insert_users(f, qtd):
@@ -107,14 +107,30 @@ def insert_plataforma(f):
     for i in range(qtd):
         f.write(f"('{plataformas[i]}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
-    
+
+def insert_tipo_nota(f):
+    f.write("INSERT INTO 'tipoDeNota' (tipoDeNota)")
+    qtd = len(tipo_nota)
+    for i in range(qtd):
+        f.write(f"('{tipo_nota[i]}'){',' if i < qtd-1 else ';' }\n")
+    f.write("\n")
+
+def insert_avaliadores(f):
+    f.write("INSERT INTO avaliadores (tipoDeNota_id, nome_site, path)")
+
+    qtd = len(avaliadores)
+    for i in range(qtd):
+        f.write(f"('{avaliadores[i]}', '{tipo_nota[i]}', '{avaliadoresPath[i]}'){',' if i < qtd-1 else ';' }\n")
+    f.write("\n")
+
 f = open(f'{current_dir}/_ignoreTest.sql', 'a')
 
 qtd_filmes = 100
 qtd_series = len(obras['series'])
 qtd_obras = qtd_filmes + qtd_series
+qtd_usuarios = 100
 
-insert_users(f, 100)
+insert_users(f, qtd_usuarios)
 insert_ator(f, 10)
 insert_estudio(f)
 insert_genero(f)

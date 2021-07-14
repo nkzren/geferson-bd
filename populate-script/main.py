@@ -82,7 +82,7 @@ def insert_genero(f, qtd):
     f.write("INSERT INTO genero (tipo_de_genero) VALUES\n")
 
     for i in range(qtd):
-        tipo_de_genero = random.choice(generos)
+        tipo_de_genero = random_item(generos)
         f.write(f"('{tipo_de_genero}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
 

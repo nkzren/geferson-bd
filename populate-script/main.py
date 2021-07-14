@@ -126,10 +126,16 @@ def insert_avaliadores(f):
 def insert_watchlist(f, qtd_usuarios, qtd_obras): 
     f.write("INSERT INTO watchlist (usuario_id, obra_id)")
 
+    entry_set = set()
     # Cria em media 5 itens na watchlist dos usuarios
     num_iterations = qtd_usuarios * 5
     for i in range(num_iterations):
-        f.write(f"('{random_number(1, qtd_usuarios)}', '{random_number(1, qtd_obras)}'){',' if i < num_iterations-1 else ';' }\n")
+        usuario_id = random_number(1, qtd_usuarios)
+        obra_id = random_number(1, qtd_obras)
+        set_key = f'{obra_id}_{usuario_id}'
+        if (set_key not in entry_set):
+            entry_set.add(set_key)
+            f.write(f"('{usuario_id}', '{obra_id}'){',' if i < num_iterations-1 else ';' }\n")
 
 def insert_disponibilidade_sites(f, qtd_obras):
     f.write("INSERT INTO disponibilidade_sites (sites_id, obra_id)")

@@ -108,7 +108,7 @@ def insert_plataforma(f):
         f.write(f"('{plataformas[i]}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
     
-f = open(f'{current_dir}/test.sql', 'a')
+f = open(f'{current_dir}/_ignoreTest.sql', 'a')
 
 qtd_filmes = 100
 qtd_series = len(obras['series'])

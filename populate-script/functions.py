@@ -61,5 +61,5 @@ def random_item(arr):
 def random_id(arr):
     return random.randint(1, len(arr))
 
-def random_number(maximum):
-    return random.randint(1, maximum)
+def random_number(minimum, maximum):
+    return random.randint(minimum, maximum)

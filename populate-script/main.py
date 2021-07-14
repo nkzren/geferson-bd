@@ -60,9 +60,19 @@ def insert_obra(f, qtd, tipo):
             nome_obra = random_item(nomes)
 
         data_lancamento = random_date("1970/01/01", "2009/01/01")
-        f.write(f"('{random_id(estudios)}', '{random_number(20)}', '{random_id(paises)}', '{nome_obra}', '{randomstring(30)}', '{data_lancamento}'){',' if i < qtd-1 else ';' }\n")
+        f.write(f"('{random_id(estudios)}', '{random_number(1, 20)}', '{random_id(paises)}', '{nome_obra}', '{randomstring(30)}', '{data_lancamento}'){',' if i < qtd-1 else ';' }\n")
 
         obraCount+=1        
+
+    # popula a tabela de especializacao
+    if (tipo == 'filmes'): 
+        f.write(f"\nINSERT INTO {tipo} (obra_id, duracao) VALUES\n")
+        for i in range(qtd):
+            f.write(f"('{i}', '{random_number(90, 130)}'){',' if i < qtd-1 else ';' }\n")
+    else:
+        f.write(f"\nINSERT INTO {tipo} (obra_id, n_episodios, temporadas) VALUES\n")
+        for i in range(qtd):
+            f.write(f"('{i}', '{random_number(12, 25)}', '{random_number(1, 10)}'){',' if i < qtd-1 else ';' }\n")
 
 def insert_estudio(f): 
     qtd = len(estudios)

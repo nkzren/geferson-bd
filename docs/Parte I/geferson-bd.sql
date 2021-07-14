@@ -100,6 +100,7 @@ PRIMARY KEY(id));
 CREATE TABLE avaliacao_exterior (
 sites_avaliacao_id integer NOT NULL,
 obra_id integer NOT NULL,
+nota text,
 PRIMARY KEY(sites_avaliacao_id, obra_id));
 
 /* Table 'categorias' */

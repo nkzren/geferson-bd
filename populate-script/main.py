@@ -28,7 +28,6 @@ paises = [ 'Brasil', 'Congo', 'Bangladesh', 'Paquistao', 'Taiwan', 'Cingapura', 
 
 
 def insert_obra(f, qtd, tipo):
-    obraCount = 0
     f.write("INSERT INTO obra (estudio_id, diretores_id, pais_id, nome, descricao, data_lancamento) VALUES\n")
     obras = {
         'filmes': {
@@ -48,23 +47,27 @@ def insert_obra(f, qtd, tipo):
         ]
     }
 
-    for i in range(qtd): 
-        nomes = obras[tipo]
+    if (tipo == 'filmes'):
+        for i in range(qtd): 
+            nomes = obras[tipo]
 
-        nome_obra = ''
-        if (tipo == 'filmes'):
             nome_base = random_item(list(nomes.keys()))
             nome_obra = f'{nome_base} {nomes[nome_base]}'
             nomes[nome_base]+=1
-        else:
-            nome_obra = random_item(nomes)
 
-        data_lancamento = random_date("1970/01/01", "2009/01/01")
-        f.write(f"('{random_id(estudios)}', '{random_number(1, 20)}', '{random_id(paises)}', '{nome_obra}', '{randomstring(30)}', '{data_lancamento}'){',' if i < qtd-1 else ';' }\n")
+            data_lancamento = random_date("1970/01/01", "2009/01/01")
+            f.write(f"('{random_id(estudios)}', '{random_number(1, 20)}', '{random_id(paises)}', '{nome_obra}', '{randomstring(30)}', '{data_lancamento}'){',' if i < qtd-1 else ';' }\n")
+    elif (tipo == 'series'): 
+        nomes = obras[tipo]
 
-        obraCount+=1        
+        for i in range(len(nomes)):
+            nome_obra = nomes[i]
+            data_lancamento = random_date("1970/01/01", "2009/01/01")
+            f.write(f"('{random_id(estudios)}', '{random_number(1, 20)}', '{random_id(paises)}', '{nome_obra}', '{randomstring(30)}', '{data_lancamento}'){',' if i < qtd-1 else ';' }\n")
 
-    # popula a tabela de especializacao
+    insert_especializacao(f, qtd, tipo)
+
+def insert_especializacao(f, qtd, tipo):
     if (tipo == 'filmes'): 
         f.write(f"\nINSERT INTO {tipo} (obra_id, duracao) VALUES\n")
         for i in range(qtd):
@@ -88,7 +91,7 @@ def insert_diretor(f, qtd):
     f.write("\n")
 
 
-def insert_genero(f, qtd):
+def insert_genero_obra(f, qtd):
     f.write("INSERT INTO genero (tipo_de_genero) VALUES\n")
 
     for i in range(qtd):
@@ -105,7 +108,6 @@ def insert_pais(f):
         f.write(f"('{paises[i]}'){',' if i < qtd-1 else ';' }\n")
     f.write("\n")
 
-
 def insert_categorias(f):
     f.write("INSERT INTO categorias (nome_pais) VALUES\n")
 
@@ -118,4 +120,11 @@ def insert_categorias(f):
 
 
 f = open(f'{current_dir}/test.sql', 'a')
-insert_obra(f, 10, 'filmes')
+
+qtd_filmes = 100
+qtd_obras = 100
+
+# insert_ator(f, 1000)
+# insert_genero_obra(f, qtd_obras)
+
+insert_obra(f, 10, 'series')

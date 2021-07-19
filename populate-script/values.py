@@ -2,7 +2,7 @@ generos = ['romance', 'sci-fi', 'adventure', 'horror', 'fantasy', 'humor']
 estudios = ['Ghibli', 'Herbert Richer', 'Alamo', 'Roberto', 'Adam Sandler Animations', 'Warner', 'Bros', 'Dream', 'Works', 'Daora Studios']
 # filmes_imdb = get_movies()
 paises = [ 'Brasil', 'Congo', 'Bangladesh', 'Paquistao', 'Taiwan', 'Cingapura', 'Romenia']
-categorias = [ 'Assistir com a família', 'Crianças grandes', 'em alta', 'Campeões de bilheteria', 'filmes policiais']
+categorias = [ 'Assistir com a familia', 'Criancas grandes', 'em alta', 'Campeoes de bilheteria', 'filmes policiais']
 obras = {
     'filmes': {
         'Harry Potter': 1,

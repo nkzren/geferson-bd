@@ -1,3 +1,6 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
 /* Table 'obra' */
 CREATE TABLE obra (
 id SERIAL,
@@ -91,7 +94,7 @@ PRIMARY KEY(id));
 /* Table 'avaliadores' */
 CREATE TABLE avaliadores (
 id SERIAL,
-"tipoDeNota_id" integer NOT NULL,
+"tipo_de_nota_id" integer NOT NULL,
 nome_site text,
 path text,
 PRIMARY KEY(id));
@@ -116,9 +119,9 @@ categorias_id integer NOT NULL,
 obra_id integer NOT NULL,
 PRIMARY KEY (categorias_id, obra_id));
 
-/* Table 'tipoDeNota' */
-CREATE TABLE "tipoDeNota" (
-"tipoDeNota" text NOT NULL,
+/* Table 'tipo_de_nota' */
+CREATE TABLE "tipo_de_nota" (
+"tipo_de_nota" text NOT NULL,
 id SERIAL,
 PRIMARY KEY(id));
 
@@ -224,10 +227,10 @@ ALTER TABLE categorias_obra ADD CONSTRAINT "obra-table1"
 FOREIGN KEY (obra_id)
 REFERENCES obra(id);
 
-/* Relation 'tipoDeNota-avaliadores' */
-ALTER TABLE avaliadores ADD CONSTRAINT "tipoDeNota-avaliadores"
-FOREIGN KEY ("tipoDeNota_id")
-REFERENCES "tipoDeNota"(id);
+/* Relation 'tipo_de_nota-avaliadores' */
+ALTER TABLE avaliadores ADD CONSTRAINT "tipo_de_nota-avaliadores"
+FOREIGN KEY ("tipo_de_nota_id")
+REFERENCES "tipo_de_nota"(id);
 
 /* Relation 'genero-genero_obra' */
 ALTER TABLE genero_obra ADD CONSTRAINT "genero-genero_obra"

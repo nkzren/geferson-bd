@@ -129,7 +129,7 @@ def insert_avaliacao_exterior(f, qtd_obras):
     
     for i in range(qtd_obras):
         obra_id = random_number(1, qtd_obras)
-        site_avaliacao_id = random_number(1, qtd_obras)
+        site_avaliacao_id = random_number(1, len(avaliadores))
         set_key = f'{obra_id}_{site_avaliacao_id}'
         if (set_key not in entry_set):
             entry_set.add(set_key)
@@ -160,7 +160,7 @@ def insert_disponibilidade_sites(f, qtd_obras):
     num_iterations = qtd_obras * 3
     for i in range(num_iterations):
         id_obra = random_number(1, qtd_obras)
-        id_plataforma = random_number(1, 2)
+        id_plataforma = random_number(1, len(plataformas))
         set_key = f'{id_obra}_{id_plataforma}'
         if (set_key not in entry_set):
             entry_set.add(set_key)
@@ -203,7 +203,7 @@ def esta_em(f, qtd_obras):
     num_iterations = qtd_obras * 5
     for i in range(num_iterations):
         id_obra = random_number(1, qtd_obras)
-        ator_id = random_number(1, len(avaliadores))
+        ator_id = random_number(1, len(atores))
         set_key = f'{id_obra}_{ator_id}'
         if (set_key not in entry_set):
             entry_set.add(set_key)
@@ -248,12 +248,12 @@ def insert_categorias_obra(f, qtd_obras):
 
 def main():
     f = open(f'{current_dir}/_ignoreTest.sql', 'w')
-    qtd_filmes = 100
+    qtd_filmes = 500
     qtd_series = len(obras['series'])
     qtd_obras = qtd_filmes + qtd_series
     qtd_usuarios = 1000
     
-    insert_ator(f, 10)
+    insert_ator(f, 80)
     insert_tipo_nota(f)
     insert_avaliadores(f)
     insert_categorias(f)

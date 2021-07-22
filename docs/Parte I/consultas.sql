@@ -1,11 +1,11 @@
 -- Encontre o nome de todas as obras de um diretor específico que receberam nota
 -- média maior que 8 nas avaliações dos usuários 
-SELECT o.nome 
+SELECT DISTINCT o.nome 
 FROM obra o 
 	INNER JOIN diretores d ON o.diretores_id IN (
 		SELECT id 
 		FROM diretores 
-		WHERE nome_diretor = 'Ricardo Milos'
+		WHERE nome_diretor = 'Karole Pickens'
 	)
 	INNER JOIN avaliacao a ON o.id IN (
 		SELECT obra_id
@@ -13,6 +13,7 @@ FROM obra o
 		GROUP BY obra_id
 		HAVING AVG(nota) > 8
 	);
+
 
 
 -- Lista os 5 filmes com maior disponibilidade nas plataformas que contém um ator específico

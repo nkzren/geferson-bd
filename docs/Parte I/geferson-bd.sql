@@ -82,7 +82,8 @@ PRIMARY KEY (ator_id, obra_id));
 
 /* Table 'posters' */
 CREATE TABLE posters (
-path text,
+path text, 
+metadata jsonb NOT NULL DEFAULT '{}'::jsonb, 
 obra_id integer NOT NULL);
 
 /* Table 'pais' */

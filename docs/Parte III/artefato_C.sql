@@ -1,32 +1,22 @@
 -- Query 1
+-- Modificação 1
 SELECT DISTINCT o.nome 
 FROM obra o 
 	INNER JOIN diretores d ON o.diretores_id IN (
 		SELECT id 
 		FROM diretores 
-		WHERE nome_diretor = 'Karole Pickens'
+		WHERE nome_diretor != 'Karole Pickens'
 	)
 	INNER JOIN avaliacao a ON o.id IN (
 		SELECT obra_id
 		FROM avaliacao
 		GROUP BY obra_id
-		HAVING AVG(nota) > 8
+		HAVING AVG(nota) >= 6
 	);
 
 
-SELECT DISTINCT o.nome 
-FROM obra o 
-	INNER JOIN diretores d ON o.diretores_id IN (
-		SELECT id 
-		FROM diretores 
-		WHERE nome_diretor = 'Karole Pickens'
-	)
-	INNER JOIN avaliacao a ON o.id IN (
-		SELECT obra_id
-		FROM avaliacao
-		GROUP BY obra_id
-		HAVING AVG(nota) > 8
-	);
+-- Modificação 2
+CREATE UNIQUE INDEX nome_diretor_idx ON diretores (nome_diretor);
 
 -- FIM Query 1
 

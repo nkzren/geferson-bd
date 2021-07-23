@@ -51,6 +51,11 @@ data_nascimento date,
 deletado bool DEFAULT FALSE,
 PRIMARY KEY(id));
 
+CREATE TABLE usuario_premium (
+	data_expira_em DATE NOT NULL	
+) INHERITS(usuario);
+
+
 /* Table 'watchlist' */
 CREATE TABLE watchlist (
 usuario_id integer NOT NULL,

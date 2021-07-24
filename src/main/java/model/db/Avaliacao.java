@@ -19,6 +19,8 @@ public class Avaliacao extends PanacheEntity {
 
     @ManyToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
     private Obra obra;
+    @Column(name = "obra_id")
+    private Integer obraId;
 
     private String comentario;
 

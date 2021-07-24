@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.time.LocalDate;
 
 @Entity(name = "obra")
 public class Obra extends PanacheEntity {

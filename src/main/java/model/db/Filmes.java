@@ -1,25 +1,31 @@
 package model.db;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jdk.jfr.Name;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "filmes")
+@NamedQuery(
+        name = "Filmes.getDisponibilidade",
+        query = "SELECT o.nome, COUNT(ds.id) as qtd_plataformas " +
+                "FROM filmes f INNER JOIN f.obra as o INNER JOIN f.disponibilidade as ds " +
+                "WHERE o.id IN (SELECT ee.obra.id FROM esta_em ee WHERE ee.ator.id IN " +
+                "(SELECT a.id FROM ator a WHERE a.nomeAtor = :nomeAtor))" +
+                "GROUP BY o.nome"
+)
 public class Filmes extends PanacheEntity {
 
-    @Column(name="obra_id")
-    private Integer obraId;
+    @OneToOne(targetEntity = Obra.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "obra_id", referencedColumnName = "id")
+    private Obra obra;
+
+    @OneToMany(targetEntity = DisponibilidadeSites.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "obra_id",  referencedColumnName = "obra_id")
+    private List<DisponibilidadeSites> disponibilidade;
 
     private Integer duracao;
-
-    public Integer getObraId() {
-        return obraId;
-    }
-
-    public void setObraId(Integer obraId) {
-        this.obraId = obraId;
-    }
 
     public Integer getDuracao() {
         return duracao;

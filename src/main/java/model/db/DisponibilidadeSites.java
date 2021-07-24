@@ -1,30 +1,23 @@
 package model.db;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import jdk.jfr.Name;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity(name = "disponibilidade_sites")
 public class DisponibilidadeSites extends PanacheEntity {
-    private Integer sites_id;
 
-    @Column(name = "obra_id")
-    private Integer obraId;
+    @ManyToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
+    private Obra obra;
 
-    public Integer getSites_id() {
-        return sites_id;
+    private Integer sitesId;
+
+    public Integer getSitesId() {
+        return sitesId;
     }
 
-    public void setSites_id(Integer sites_id) {
-        this.sites_id = sites_id;
-    }
-
-    public Integer getObraId() {
-        return obraId;
-    }
-
-    public void setObraId(Integer obraId) {
-        this.obraId = obraId;
+    public void setSitesId(Integer sitesId) {
+        this.sitesId = sitesId;
     }
 }

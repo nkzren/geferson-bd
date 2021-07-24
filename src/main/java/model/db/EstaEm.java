@@ -4,29 +4,31 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
 @Entity(name = "esta_em")
 public class EstaEm extends PanacheEntity {
-    @Column(name = "ator_id")
-    private Integer atorId;
 
-    @Column(name = "obra_id")
-    private Integer obraId;
+    @OneToOne(targetEntity = Ator.class, fetch = FetchType.LAZY)
+    private Ator ator;
 
+    @OneToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
+    private Obra obra;
 
-    public Integer getAtorId() {
-        return atorId;
+    public Ator getAtor() {
+        return ator;
     }
 
-    public void setAtorId(Integer atorId) {
-        this.atorId = atorId;
+    public void setAtor(Ator ator) {
+        this.ator = ator;
     }
 
-    public Integer getObraId() {
-        return obraId;
+    public Obra getObra() {
+        return obra;
     }
 
-    public void setObraId(Integer obraId) {
-        this.obraId = obraId;
+    public void setObra(Obra obra) {
+        this.obra = obra;
     }
 }

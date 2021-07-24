@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Entity(name = "obra")
 public class Obra extends PanacheEntity {
@@ -18,7 +19,11 @@ public class Obra extends PanacheEntity {
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Avaliacao.class)
     @JoinColumn(name = "obra_id", referencedColumnName = "id")
-    private Collection<Avaliacao> avaliacoes;
+    private List<Avaliacao> avaliacoes;
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = GeneroObra.class)
+    @JoinColumn(name = "obra_id", referencedColumnName = "id")
+    private List<GeneroObra> generos;
 
     @Column(name = "pais_id")
     private Integer paisId;
@@ -38,11 +43,11 @@ public class Obra extends PanacheEntity {
         this.estudioId = estudioId;
     }
 
-    public Collection<Avaliacao> getAvaliacoes() {
+    public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
-    public void setAvaliacoes(Collection<Avaliacao> avaliacoes) {
+    public void setAvaliacoes(List<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
     }
 

@@ -7,24 +7,9 @@ import javax.persistence.Entity;
 
 @Entity(name = "ator")
 public class Ator extends PanacheEntity {
-    private Integer id;
+    public Integer id;
 
     @Column(name = "nome_ator")
-    private String nomeAtor;
+    public String nomeAtor;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNomeAtor() {
-        return nomeAtor;
-    }
-
-    public void setNomeAtor(String nomeAtor) {
-        this.nomeAtor = nomeAtor;
-    }
 }

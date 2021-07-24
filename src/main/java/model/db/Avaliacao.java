@@ -15,55 +15,16 @@ import java.time.LocalDate;
 public class Avaliacao extends PanacheEntity {
 
     @Column(name = "usuario_id")
-    private Integer usuarioId;
+    public Integer usuarioId;
 
     @ManyToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
-    private Obra obra;
+    public Obra obra;
 
-    private String comentario;
+    public String comentario;
 
-    private Integer nota;
+    public Integer nota;
 
     @Column(name = "data_avaliacao")
-    private LocalDate dataAvaliacao;
+    public LocalDate dataAvaliacao;
 
-    public Integer getUsuarioId() {
-        return usuarioId;
-    }
-
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
-    }
-
-    public Obra getObra() {
-        return obra;
-    }
-
-    public void setObra(Obra obra) {
-        this.obra = obra;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public Integer getNota() {
-        return nota;
-    }
-
-    public void setNota(Integer nota) {
-        this.nota = nota;
-    }
-
-    public LocalDate getDataAvaliacao() {
-        return dataAvaliacao;
-    }
-
-    public void setDataAvaliacao(LocalDate dataAvaliacao) {
-        this.dataAvaliacao = dataAvaliacao;
-    }
 }

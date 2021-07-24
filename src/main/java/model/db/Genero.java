@@ -8,13 +8,6 @@ import javax.persistence.*;
 public class Genero extends PanacheEntity {
 
     @Column(name = "tipo_de_genero")
-    private String tipoDeGenero;
+    public String tipoDeGenero;
 
-    public String getTipoDeGenero() {
-        return tipoDeGenero;
-    }
-
-    public void setTipoDeGenero(String tipoDeGenero) {
-        this.tipoDeGenero = tipoDeGenero;
-    }
 }

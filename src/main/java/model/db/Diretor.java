@@ -9,13 +9,5 @@ import javax.persistence.Entity;
 public class Diretor extends PanacheEntity {
 
     @Column(name = "nome_diretor")
-    private String nome;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String nome;
 }

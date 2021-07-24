@@ -16,34 +16,14 @@ public class Series extends PanacheEntity {
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Obra.class)
     @JoinColumn(name = "obra_id", referencedColumnName = "id")
-    private Obra obra;
+    public Obra obra;
 
     @Column(name = "n_episodios")
-    private Integer nEpisodios;
+    public Integer nEpisodios;
 
-    private Integer temporadas;
+    public Integer temporadas;
 
     public Obra getObra() {
         return obra;
-    }
-
-    public void setObra(Obra obra) {
-        this.obra = obra;
-    }
-
-    public Integer getnEpisodios() {
-        return nEpisodios;
-    }
-
-    public void setnEpisodios(Integer nEpisodios) {
-        this.nEpisodios = nEpisodios;
-    }
-
-    public Integer getTemporadas() {
-        return temporadas;
-    }
-
-    public void setTemporadas(Integer temporadas) {
-        this.temporadas = temporadas;
     }
 }

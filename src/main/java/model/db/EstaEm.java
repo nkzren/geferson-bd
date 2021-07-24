@@ -10,24 +10,8 @@ import javax.persistence.OneToOne;
 public class EstaEm extends PanacheEntity {
 
     @OneToOne(targetEntity = Ator.class, fetch = FetchType.LAZY)
-    private Ator ator;
+    public Ator ator;
 
     @OneToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
-    private Obra obra;
-
-    public Ator getAtor() {
-        return ator;
-    }
-
-    public void setAtor(Ator ator) {
-        this.ator = ator;
-    }
-
-    public Obra getObra() {
-        return obra;
-    }
-
-    public void setObra(Obra obra) {
-        this.obra = obra;
-    }
+    public Obra obra;
 }

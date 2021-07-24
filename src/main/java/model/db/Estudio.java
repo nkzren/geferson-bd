@@ -8,13 +8,5 @@ import javax.persistence.*;
 public class Estudio extends PanacheEntity {
 
     @Column(name = "nome_estudio")
-    private String nomeEstudio;
-
-    public String getNomeEstudio() {
-        return nomeEstudio;
-    }
-
-    public void setNomeEstudio(String nomeEstudio) {
-        this.nomeEstudio = nomeEstudio;
-    }
+    public String nomeEstudio;
 }

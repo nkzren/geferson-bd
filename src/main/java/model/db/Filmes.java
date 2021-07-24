@@ -19,19 +19,12 @@ public class Filmes extends PanacheEntity {
 
     @OneToOne(targetEntity = Obra.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "obra_id", referencedColumnName = "id")
-    private Obra obra;
+    public Obra obra;
 
     @OneToMany(targetEntity = DisponibilidadeSites.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "obra_id",  referencedColumnName = "obra_id")
-    private List<DisponibilidadeSites> disponibilidade;
+    public List<DisponibilidadeSites> disponibilidade;
 
-    private Integer duracao;
+    public Integer duracao;
 
-    public Integer getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Integer duracao) {
-        this.duracao = duracao;
-    }
 }

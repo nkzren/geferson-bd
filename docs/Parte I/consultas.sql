@@ -59,17 +59,20 @@ AND o.id NOT IN (
 
 -- Lista ano a ano a média da nota das avaliações de todos os filmes de um estúdio, ordenado cronologicamente
 WITH medias AS (
-	SELECT o.id AS id, AVG(a.nota) AS media, date_part('year', o.data_lancamento) AS ano
+	SELECT o.id AS id, AVG(a.nota) AS media,
+	date_part('year', o.data_lancamento) AS ano
 	FROM obra o 
 		INNER JOIN filmes f ON o.id = f.obra_id 
 		INNER JOIN avaliacao a ON o.id = a.obra_id
 	GROUP BY o.id, ano
 )
 
-SELECT date_part('year', o.data_lancamento) AS ano, m.media
+SELECT DISTINCT ano, avg(media) FROM
+(SELECT date_part('year', o.data_lancamento) AS ano, m.media, m.id
 FROM estudio e 
 	INNER JOIN obra o ON e.id = o.estudio_id
 	LEFT JOIN medias m ON o.id = m.id
 WHERE m.media NOTNULL
-	AND e.nome_estudio = 'Studio Ghibli'
-ORDER BY date_part('year', o.data_lancamento);
+	AND e.nome_estudio = 'Ghibli'	
+ORDER BY date_part('year', o.data_lancamento)) as n
+GROUP BY ano;

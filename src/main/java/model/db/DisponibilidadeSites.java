@@ -9,8 +9,10 @@ import javax.persistence.*;
 public class DisponibilidadeSites extends PanacheEntity {
 
     @ManyToOne(targetEntity = Obra.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "obra_id", referencedColumnName = "id")
     private Obra obra;
 
+    @Column(name = "sites_id")
     private Integer sitesId;
 
     public Integer getSitesId() {

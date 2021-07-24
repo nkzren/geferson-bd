@@ -9,11 +9,11 @@ import java.util.List;
 @Entity(name = "filmes")
 @NamedQuery(
         name = "Filmes.getDisponibilidade",
-        query = "SELECT o.nome, COUNT(ds.id) as qtd_plataformas " +
+        query = "SELECT o.nome, COUNT(o) as qtd_plataformas " +
                 "FROM filmes f INNER JOIN f.obra as o INNER JOIN f.disponibilidade as ds " +
                 "WHERE o.id IN (SELECT ee.obra.id FROM esta_em ee WHERE ee.ator.id IN " +
                 "(SELECT a.id FROM ator a WHERE a.nomeAtor = :nomeAtor))" +
-                "GROUP BY o.nome"
+                "GROUP BY o.nome ORDER BY COUNT(o) DESC"
 )
 public class Filmes extends PanacheEntity {
 

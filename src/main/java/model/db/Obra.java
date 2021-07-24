@@ -9,8 +9,9 @@ import java.util.List;
 @Entity(name = "obra")
 public class Obra extends PanacheEntity {
 
-    @Column(name = "estudio_id")
-    public Integer estudioId;
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Estudio.class)
+    @JoinColumn(name = "estudio_id", referencedColumnName = "id")
+    public Estudio estudio;
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Diretor.class)
     @JoinColumn(name = "diretores_id", referencedColumnName = "id")

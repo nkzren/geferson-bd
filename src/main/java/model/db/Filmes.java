@@ -1,7 +1,6 @@
 package model.db;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.util.List;

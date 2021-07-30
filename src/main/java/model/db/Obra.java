@@ -7,6 +7,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "obra")
+@NamedQuery(name = "Obra.findPosterByName",
+        query = "SELECT o.nome, p.path, o.id " +
+                "FROM posters p INNER JOIN p.obra as o " +
+                "WHERE o.nome = :nomeObra "
+)
 public class Obra extends PanacheEntity {
 
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Estudio.class)

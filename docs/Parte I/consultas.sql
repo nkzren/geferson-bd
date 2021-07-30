@@ -15,7 +15,6 @@ FROM obra o
 	);
 
 
-
 -- Lista os 5 filmes com maior disponibilidade nas plataformas que contém um ator específico
 SELECT o.nome, COUNT(*) AS qtde_plataformas
 FROM filmes f 
